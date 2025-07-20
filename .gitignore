@@ -63,3 +63,4 @@ vmess_pool.json
 *.log 
 
 vmessping
+./vmessping
