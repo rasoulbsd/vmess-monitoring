@@ -61,3 +61,5 @@ Thumbs.db
 # Custom
 vmess_pool.json
 *.log 
+
+vmessping
