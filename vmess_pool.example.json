@@ -3,12 +3,12 @@
     "name": "SampleConfig1",
     "vmess": "vmess://example1",
     "url": "https://www.gstatic.com/generate_204",
-    "uptime_kuma_url": "http://128.140.83.6:3001/api/push/EXAMPLEKEY1"
+    "uptime_kuma_url": ""
   },
   {
     "name": "SampleConfig2",
     "vmess": "vmess://example2",
     "url": "https://www.gstatic.com/generate_204",
-    "uptime_kuma_url": "http://128.140.83.6:3001/api/push/EXAMPLEKEY2"
+    "uptime_kuma_url": ""
   }
 ] 
