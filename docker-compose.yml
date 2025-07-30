@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  vmess-monitoring:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      - SERVER_HOST=0.0.0.0
+      - SERVER_PORT=8000
+      - DEBUG=False
+      - API_KEY=your-secret-api-key-here
+      - USERNAME=admin
+      - PASSWORD=your-secure-password-here
+      - VMESSPING_BIN=./vmessping
+      - MAX_PING=5
+      - INTERVAL=2
+      - DEFAULT_DEST_URL=https://www.gstatic.com/generate_204
+    volumes:
+      - ./.env:/app/.env:ro
+    restart: unless-stopped 
