@@ -59,8 +59,13 @@ coverage.xml
 Thumbs.db
 
 # Custom
-vmess_pool.json
 *.log 
 
+.env
+vmess_pool.json
+
+.venv
+
 vmessping
-./vmessping
+# vmessping
+# ./vmessping
