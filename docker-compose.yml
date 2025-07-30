@@ -4,7 +4,7 @@ services:
   vmess-monitoring:
     build: .
     ports:
-      - "${SERVER_PORT:-8000}:8000"
+      - "${SERVER_PORT:-8765}:8765"
     env_file:
       - .env
     volumes:

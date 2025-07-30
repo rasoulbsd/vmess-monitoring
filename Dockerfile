@@ -19,12 +19,12 @@ COPY . .
 RUN chmod +x vmessping
 
 # Expose port
-EXPOSE 8000
+EXPOSE 8765
 
 # Set environment variables
 ENV SERVER_HOST=0.0.0.0
-ENV SERVER_PORT=8000
+ENV SERVER_PORT=8765
 ENV DEBUG=False
 
-# Run the server
-CMD ["python", "-m", "server.run"] 
+# Run the server with gunicorn for production
+CMD ["gunicorn", "--bind", "0.0.0.0:8765", "--workers", "4", "--timeout", "120", "server.wsgi:app"] 

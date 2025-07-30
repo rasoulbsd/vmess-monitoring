@@ -11,8 +11,13 @@ class Config:
     
     # Server Configuration
     SERVER_HOST = os.getenv('SERVER_HOST', '0.0.0.0')
-    SERVER_PORT = int(os.getenv('SERVER_PORT', 8000))
+    SERVER_PORT = int(os.getenv('SERVER_PORT', 8765))
     DEBUG = os.getenv('DEBUG', 'False').lower() == 'true'
+    
+    # Production Settings
+    GUNICORN_WORKERS = int(os.getenv('GUNICORN_WORKERS', 4))
+    GUNICORN_TIMEOUT = int(os.getenv('GUNICORN_TIMEOUT', 120))
+    GUNICORN_BIND = os.getenv('GUNICORN_BIND', '0.0.0.0:8765')
     
     # Authentication
     API_KEY = os.getenv('API_KEY', 'your-secret-api-key-here')

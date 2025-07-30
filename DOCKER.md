@@ -1,6 +1,6 @@
 # Docker Setup for VMess Monitoring
 
-Simple Docker configuration for running the VMess monitoring server.
+Simple Docker configuration for running the VMess monitoring server in production.
 
 ## Quick Start
 
@@ -32,12 +32,18 @@ Simple Docker configuration for running the VMess monitoring server.
    ```bash
    docker run -d \
      --name vmess-monitoring \
-     -p 8000:8000 \
-     -e API_KEY=your-secret-api-key \
-     -e USERNAME=admin \
-     -e PASSWORD=your-password \
+     -p 8765:8765 \
+     --env-file .env \
      vmess-monitoring
    ```
+
+## Production Features
+
+- **Gunicorn WSGI Server**: Production-grade WSGI server
+- **Multiple Workers**: Configurable worker processes
+- **Proper Logging**: Access and error logs
+- **Timeout Handling**: Configurable request timeouts
+- **Process Management**: Automatic worker restarts
 
 ## Configuration
 
@@ -48,8 +54,13 @@ You can configure the server using environment variables:
 ```bash
 # Server settings
 SERVER_HOST=0.0.0.0
-SERVER_PORT=8000
+SERVER_PORT=8765
 DEBUG=False
+
+# Production Settings
+GUNICORN_WORKERS=4
+GUNICORN_TIMEOUT=120
+GUNICORN_BIND=0.0.0.0:8765
 
 # Authentication
 API_KEY=your-secret-api-key-here
@@ -80,10 +91,10 @@ Once running, test the API:
 
 ```bash
 # Health check
-curl http://localhost:8000/health
+curl http://localhost:8765/health
 
 # Test VMess connection
-curl -X POST http://localhost:8000/api/test-vmess \
+curl -X POST http://localhost:8765/api/test-vmess \
   -H "Content-Type: application/json" \
   -H "X-API-Key: your-secret-api-key-here" \
   -d '{"vmess_link": "vmess://your-link-here"}'
@@ -109,4 +120,17 @@ docker-compose exec vmess-monitoring bash
 ### Rebuild after changes
 ```bash
 docker-compose up -d --build
-``` 
+```
+
+### Check gunicorn processes
+```bash
+docker-compose exec vmess-monitoring ps aux
+```
+
+## Production Notes
+
+- **Workers**: Default 4 workers, adjust based on CPU cores
+- **Timeout**: 120 seconds for VMess testing
+- **Logs**: Access and error logs are sent to stdout/stderr
+- **Health Checks**: Use `/health` endpoint for monitoring
+- **Security**: Change default credentials in production 

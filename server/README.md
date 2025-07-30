@@ -30,7 +30,7 @@ Edit the `.env` file with your settings:
 ```env
 # Server Configuration
 SERVER_HOST=0.0.0.0
-SERVER_PORT=8000
+SERVER_PORT=8765
 DEBUG=False
 
 # Authentication
@@ -66,7 +66,7 @@ python -m server.run
 
 #### API Key Authentication
 ```bash
-curl -X POST http://localhost:8000/api/test-vmess \
+curl -X POST http://localhost:8765/api/test-vmess \
   -H "Content-Type: application/json" \
   -H "X-API-Key: your-secret-api-key-here" \
   -d '{
@@ -77,7 +77,7 @@ curl -X POST http://localhost:8000/api/test-vmess \
 
 #### Basic Authentication
 ```bash
-curl -X POST http://localhost:8000/api/test-vmess-basic \
+curl -X POST http://localhost:8765/api/test-vmess-basic \
   -H "Content-Type: application/json" \
   -u "admin:your-secure-password-here" \
   -d '{
@@ -88,7 +88,7 @@ curl -X POST http://localhost:8000/api/test-vmess-basic \
 
 #### Flexible Authentication
 ```bash
-curl -X POST http://localhost:8000/api/test-vmess-auth \
+curl -X POST http://localhost:8765/api/test-vmess-auth \
   -H "Content-Type: application/json" \
   -H "X-API-Key: your-secret-api-key-here" \
   -d '{
