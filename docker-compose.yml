@@ -3,6 +3,7 @@ version: '3.8'
 services:
   vmess-monitoring:
     build: .
+    container_name: vmess_testing_server
     ports:
       - "${SERVER_PORT:-8765}:8765"
     env_file:
